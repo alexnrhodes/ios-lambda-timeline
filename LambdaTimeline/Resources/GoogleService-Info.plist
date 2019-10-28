@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>748081649150-gu6na74v9dp702ovkap8ve1e88ndifbg.apps.googleusercontent.com</string>
+	<string>346789838130-9v9jonmp648fgrn4ntmsh8dngv06i89d.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.748081649150-gu6na74v9dp702ovkap8ve1e88ndifbg</string>
+	<string>com.googleusercontent.apps.346789838130-9v9jonmp648fgrn4ntmsh8dngv06i89d</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCUZBwWd9ueuAwzlqeWLv1k-O8Ridj2kpg</string>
+	<string>AIzaSyCOMB4J2I1w7sfASsCcRjgLh4wgVkxIAVY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>748081649150</string>
+	<string>346789838130</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.alexrhodes.FirebaseChat</string>
+	<string>com.AlexandraRhodes.LambdaTimeline</string>
 	<key>PROJECT_ID</key>
-	<string>fir-chat-6a794</string>
+	<string>coreimage-9c397</string>
 	<key>STORAGE_BUCKET</key>
-	<string>fir-chat-6a794.appspot.com</string>
+	<string>coreimage-9c397.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:748081649150:ios:3eda0dfc1e714d67125caf</string>
+	<string>1:346789838130:ios:9e8030502c5d0bb979ab2b</string>
 	<key>DATABASE_URL</key>
-	<string>https://fir-chat-6a794.firebaseio.com</string>
+	<string>https://coreimage-9c397.firebaseio.com</string>
 </dict>
 </plist>
