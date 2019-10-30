@@ -10,9 +10,30 @@ import UIKit
 
 class ImagePostDetailTableViewController: UITableViewController {
     
+    var player: Player
+    
+    var recorder: Recorder
+    
+    var recordButton = UIButton() {
+        didSet {
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        print("init(coder)")
+        player = Player()
+        recorder = Recorder()
+        
+        super.init(coder: coder)
+        
+        player.delegate = self
+        recorder.delegate = self
     }
     
     func updateViews() {
@@ -28,6 +49,19 @@ class ImagePostDetailTableViewController: UITableViewController {
         authorLabel.text = post.author.displayName
     }
     
+    private func setRecordButton() {
+        
+        if recorder.isRecording {
+            recordButton.setImage(#imageLiteral(resourceName: "stop"), for: .normal)
+        } else {
+            recordButton.setImage(#imageLiteral(resourceName: "record"), for: .normal)
+        }
+    }
+    
+    @objc func recordButtonTapped() {
+        recorder.toggleRecording()
+    }
+    
     // MARK: - Table view data source
     
     @IBAction func createComment(_ sender: Any) {
@@ -36,9 +70,21 @@ class ImagePostDetailTableViewController: UITableViewController {
         
         var commentTextField: UITextField?
         
+        
+        
         alert.addTextField { (textField) in
-            textField.placeholder = "Comment:"
+            textField.text = "   "
+            textField.placeholder = "   Comment:"
+            textField.leftViewMode = .always
+            textField.leftView = self.recordButton
+            
+            let rect = CGRect(x: 0, y: 0, width: 10, height: 10)
+          
+            self.recordButton.contentRect(forBounds: rect)
+            self.recordButton.setImage(#imageLiteral(resourceName: "record"), for: .normal)
+            self.recordButton.addTarget(self, action: #selector(self.recordButtonTapped), for: .touchUpInside)
             commentTextField = textField
+            
         }
         
         let addCommentAction = UIAlertAction(title: "Add Comment", style: .default) { (_) in
@@ -85,4 +131,30 @@ class ImagePostDetailTableViewController: UITableViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var imageViewAspectRatioConstraint: NSLayoutConstraint!
+}
+
+extension ImagePostDetailTableViewController: PlayerDelegate {
+    func playerDidChangeState(player: Player) {
+        // update the UI
+        
+        updateViews()
+    }
+}
+
+extension ImagePostDetailTableViewController: RecorderDelegate {
+    func recorderDidChangeState(recorder: Recorder) {
+        updateViews()
+    }
+    
+    func recorderDidSaveFile(recorder: Recorder) {
+        updateViews()
+        
+        // TODO: Play the file
+        if let url = recorder.url, recorder.isRecording == false {
+            // Recording is finished, let's try and play the file
+            
+            player = Player()
+            player.delegate = self
+        }
+    }
 }
